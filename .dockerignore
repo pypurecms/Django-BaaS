@@ -1,0 +1,102 @@
+## https://github.com/dmkoch/django-jsonfield/blob/master/.dockerignore
+# Git
+.git
+.gitignore
+
+# CI
+.codeclimate.yml
+.travis.yml
+.circleci/*
+
+# Docker
+.dockerignore
+#Dockerfile
+db.sqlite3
+docker-compose.yml
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*/*/__pycache__/
+*/*/*/__pycache__/
+*/*.py[cod]
+*/*/*/*.py[cod]
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# Virtual environment
+.env/
+.venv/
+venv/
+
+# PyCharm
+.idea
+
+# Python mode for VIM
+.ropeproject
+*/.ropeproject
+*/*/.ropeproject
+*/*/*/.ropeproject
+
+# Vim swap files
+*.swp
+*/*.swp
+*/*/*.swp
+*/*/*/*.swp
+
+## others
+# https://github.com/GoogleCloudPlatform/python-docs-samples/blob/master/container_engine/django_tutorial/.dockerignore
+*.pyo
+*.pyd
+env
+.tox
+.coverage.*
+*,cover
