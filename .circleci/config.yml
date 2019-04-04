@@ -14,27 +14,36 @@ jobs: # A basic unit of work in a run
         environment: # environment variables for the Postgres container.
           POSTGRES_USER: root
           POSTGRES_DB: circle_test
+    pre:
+      - run: wget -O geckodriver.tar.gz https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux64.tar.gz
+      - run: gunzip -c geckodriver.tar.gz | tar xopf -
+      - run: sudo chmod +x geckodriver && mv geckodriver /usr/local/bin
+
     steps: # steps that comprise the `build` job
       - checkout # check out source code to working directory
       - run: sudo chown -R circleci:circleci /usr/local/bin
       - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
       - restore_cache:
       # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
-          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+          name: Restore Pip Package Cache
+          keys:
+          - v1-dependencies-{{ checksum "requirements.txt" }}
+          - v1-dependencies-
       - run:
+          name: Install Pip Dependencies
           command: |
             sudo pip install pipenv codecov
             pipenv install
-      - save_cache: # cache Python dependencies using checksum of Pipfile as the cache-key
-          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+      - save_cache:
+          name: Save Pip Package Cache
+          key: v1-dependencies-{{ checksum "requirements.txt" }}
           paths:
             - ".venv"
             - "/usr/local/bin"
             - "/usr/local/lib/python3.6/site-packages"
-#      - run: # test with django unit tests
-#          command: |
-#            pipenv run python manage.py test
-      - run: # test with selenium driver
+
+      - run:
+          name: Run Testing
           command: |
             pipenv run python manage.py test
       - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
