@@ -16,9 +16,6 @@ jobs: # A basic unit of work in a run
           POSTGRES_DB: circle_test
     steps: # steps that comprise the `build` job
       - checkout # check out source code to working directory
-      - run: wget -O geckodriver.tar.gz https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux64.tar.gz
-      - run: gunzip -c geckodriver.tar.gz | tar xopf -
-      - run: sudo mv geckodriver /usr/bin && sudo chmod +x /usr/bin/geckodriver
       - run: sudo chown -R circleci:circleci /usr/local/bin
       - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
       - restore_cache:
