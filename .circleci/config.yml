@@ -27,7 +27,7 @@ jobs: # A basic unit of work in a run
       - run:
           name: Install Pip Dependencies
           command: |
-            sudo pip install codecov
+            pip install -r requirements.test.txt
             pip install -r requirements.txt
       - save_cache:
           name: Save Pip Package Cache
