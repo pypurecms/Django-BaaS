@@ -9,7 +9,7 @@ WORKDIR /usr/local/src
 # Copying requirements
 add . .
 
-RUN apk add --no-cache --virtual .build-deps \
+RUN apk --no-cache --virtual .build-deps add \
     ca-certificates gcc postgresql-dev linux-headers musl-dev \
     libffi-dev jpeg-dev zlib-dev \
     && pip install -r requirements.txt \
