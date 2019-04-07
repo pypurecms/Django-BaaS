@@ -1,11 +1,11 @@
-# PyPure-CMS
-[![CircleCI](https://circleci.com/gh/pypurecms/PyPure-CMS.svg?style=svg)](https://circleci.com/gh/pypurecms/PyPure-CMS) [![codefactor](https://www.codefactor.io/repository/github/pypurecms/PyPure-CMS/badge?style=flat-square)](https://www.codefactor.io/repository/github/pypurecms/PyPure-CMS/) 
-[![codecov](https://codecov.io/gh/pypurecms/PyPure-CMS/branch/master/graph/badge.svg)](https://codecov.io/gh/pypurecms/PyPure-CMS)
+# Django-BaaS
+[![CircleCI](https://circleci.com/gh/pypurecms/Django-BaaS.svg?style=svg)](https://circleci.com/gh/pypurecms/Django-BaaS) [![codefactor](https://www.codefactor.io/repository/github/pypurecms/Django-BaaS/badge?style=flat-square)](https://www.codefactor.io/repository/github/pypurecms/Django-BaaS/) 
+[![codecov](https://codecov.io/gh/pypurecms/Django-BaaS/branch/master/graph/badge.svg)](https://codecov.io/gh/pypurecms/Django-BaaS)
 
 
 
 
-A simple, powerful and developer friendly CMS.
+A simple, powerful and developer friendly BaaS.
 
 
 
