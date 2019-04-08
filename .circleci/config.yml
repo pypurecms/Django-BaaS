@@ -40,7 +40,7 @@ jobs: # A basic unit of work in a run
           name: Run Testing
           # pipenv run python manage.py test
           command: |
-            coverage run --source='.' manage.py test
+            coverage run --source='.' manage.py test --settings=Django-BaaS.settings_test
       - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: test-results
       - store_artifacts: # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
