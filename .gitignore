@@ -81,6 +81,6 @@ target/
 *.log
 *.pyc
 local_settings.py
-
+settings_local.py
 .env
 db.sqlite3

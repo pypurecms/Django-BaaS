@@ -5,7 +5,7 @@ jobs: # A basic unit of work in a run
     working_directory: ~/user/local/src/pypure
     docker: # run the steps with Docker
       # CircleCI Python images available at: https://hub.docker.com/r/circleci/python/
-      - image: circleci/python:3.6.8-browsers
+      - image: circleci/python:3.7.3-browsers
         environment: # environment variables for primary container
           PIPENV_VENV_IN_PROJECT: true
           DATABASE_URL: postgresql://root@localhost/circle_test?sslmode=disable
@@ -17,7 +17,7 @@ jobs: # A basic unit of work in a run
     steps: # steps that comprise the `build` job
       - checkout # check out source code to working directory
       - run: sudo chown -R circleci:circleci /usr/local/bin
-      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
+      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.7/site-packages
       - restore_cache:
       # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
           name: Restore Pip Package Cache
@@ -35,17 +35,21 @@ jobs: # A basic unit of work in a run
           paths:
             - ".venv"
             - "/usr/local/bin"
-            - "/usr/local/lib/python3.6/site-packages"
+            - "/usr/local/lib/python3.7/site-packages"
       - run:
           name: Run Testing
           # pipenv run python manage.py test
           command: |
-            coverage run --source='.' manage.py test --settings=Django-BaaS.settings_test
+            python manage.py test
       - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: test-results
       - store_artifacts: # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
           path: test-results
           destination: tr1
+      - run:
+          name: Run Testing For Coverage Report
+          command: |
+            coverage run --source='.' manage.py test
       - run:
           command: |
             codecov
