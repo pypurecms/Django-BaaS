@@ -20,3 +20,12 @@ class WebLiveTestCase(LiveServerTestCase):
         browser.get('{}/admin'.format(self.live_server_url))
         body = browser.find_element_by_tag_name('body')
         assert 'Username' in body.text
+
+    def test_index(self):
+        browser = self.browser
+        browser.get('{}/start-up'.format(self.live_server_url))
+        try:
+            body = browser.find_element_by_tag_name('body')
+            assert True
+        except Exception:
+            print('error')

@@ -1,6 +1,9 @@
 # Django-BaaS
-[![CircleCI](https://circleci.com/gh/pypurecms/Django-BaaS.svg?style=svg)](https://circleci.com/gh/pypurecms/Django-BaaS) [![codefactor](https://www.codefactor.io/repository/github/pypurecms/Django-BaaS/badge?style=flat-square)](https://www.codefactor.io/repository/github/pypurecms/Django-BaaS/) 
+[![CircleCI](https://circleci.com/gh/pypurecms/Django-BaaS.svg?style=svg)](https://circleci.com/gh/pypurecms/Django-BaaS)
+[![codefactor](https://www.codefactor.io/repository/github/pypurecms/Django-BaaS/badge?style=flat-square)](https://www.codefactor.io/repository/github/pypurecms/Django-BaaS/) 
+[![Maintainability](https://api.codeclimate.com/v1/badges/4faa043f47290667b98f/maintainability)](https://codeclimate.com/github/pypurecms/Django-BaaS/maintainability)
 [![codecov](https://codecov.io/gh/pypurecms/Django-BaaS/branch/master/graph/badge.svg)](https://codecov.io/gh/pypurecms/Django-BaaS)
+
 
 
 
