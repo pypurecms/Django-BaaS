@@ -10,7 +10,7 @@ jobs: # A basic unit of work in a run
           PIPENV_VENV_IN_PROJECT: true
           DATABASE_URL: postgresql://root@localhost/circle_test?sslmode=disable
       # CircleCI PostgreSQL images available at: https://hub.docker.com/r/circleci/postgres/
-      - image: circleci/postgres:9.6.2
+      - image: circleci/postgres:11.2-alpine
         environment: # environment variables for the Postgres container.
           POSTGRES_USER: root
           POSTGRES_DB: circle_test
@@ -18,12 +18,15 @@ jobs: # A basic unit of work in a run
       - checkout # check out source code to working directory
       - run: sudo chown -R circleci:circleci /usr/local/bin
       - run: sudo chown -R circleci:circleci /usr/local/lib/python3.7/site-packages
+#      - run: sudo mkdir /usr/local/lib/python3.6
+#      - run: sudo mkdir /usr/local/lib/python3.6/site-packages
+#      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
       - restore_cache:
       # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
           name: Restore Pip Package Cache
           keys:
-          - v1-dependencies-{{ checksum "requirements.txt" }}
-          - v1-dependencies-
+          - v2-dependencies-{{ checksum "requirements.txt" }}
+          - v2-dependencies-
       - run:
           name: Install Pip Dependencies
           command: |
@@ -31,7 +34,7 @@ jobs: # A basic unit of work in a run
             pip install -r requirements.txt
       - save_cache:
           name: Save Pip Package Cache
-          key: v1-dependencies-{{ checksum "requirements.txt" }}
+          key: v2-dependencies-{{ checksum "requirements.txt" }}
           paths:
             - ".venv"
             - "/usr/local/bin"
