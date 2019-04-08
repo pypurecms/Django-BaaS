@@ -18,6 +18,7 @@ jobs: # A basic unit of work in a run
       - checkout # check out source code to working directory
       - run: sudo chown -R circleci:circleci /usr/local/bin
       - run: sudo chown -R circleci:circleci /usr/local/lib/python3.7/site-packages
+      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
       - restore_cache:
       # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
           name: Restore Pip Package Cache
