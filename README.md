@@ -6,9 +6,16 @@
 
 
 
+A simple, powerful and developer friendly BaaS. Django-BaaS is a service built on Django and Django Rest Framework.
+It offers an easy-to-use API for front-end developer, powerful dashboard for starting up.
 
+## Comparing to Firebase
+Google Firebase is a great MBaaS, especially the real time db, it is almost changing the game, but some times, 
+Google is not trustworthy. There are 3 main differences between Django-BaaS with Google Firebase.
 
-A simple, powerful and developer friendly BaaS.
+- self hosted, data not on Google infrastructure anymore.
+- authentication and permission management is not done by Google.
+- not NoSQL with more query options.
 
 
 
