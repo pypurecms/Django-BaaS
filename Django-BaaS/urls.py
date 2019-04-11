@@ -19,5 +19,5 @@ from rest_framework.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
-    path('api-auth/', include('rest_framework.urls'), name='api-auth')
+    path('api-auth/', include('rest_framework.urls')) # name not required, rest_framework:login/out
 ]

@@ -1,4 +1,6 @@
 from django.test import LiveServerTestCase
+from django.urls import reverse_lazy, reverse
+# from rest_framework.reverse import reverse, reverse_lazy
 from selenium.webdriver.firefox.webdriver import WebDriver
 from selenium.webdriver.common.keys import Keys
 
@@ -9,7 +11,6 @@ class WebLiveTestCase(LiveServerTestCase):
     def setUp(self):
         self.browser = WebDriver()
         self.url = 'http://127.0.0.1:9696'
-        print(self.live_server_url)
         super(WebLiveTestCase, self).setUp()
 
     def tearDown(self):
@@ -18,7 +19,7 @@ class WebLiveTestCase(LiveServerTestCase):
 
     def test_admin(self):
         browser = self.browser
-        url = '{}/admin/login/?next=/admin/'.format(self.url)
+        url = '{}{}'.format(self.url, reverse_lazy('admin:login'))
         print(url)
         # Opening the link we want to test
         browser.get(url)
@@ -27,14 +28,15 @@ class WebLiveTestCase(LiveServerTestCase):
 
     def test_api_auth_in(self):
         browser = self.browser
-        url = '{}/api-auth/login/'.format(self.url)
+        print(reverse_lazy('rest_framework:login'))
+        url = '{}{}'.format(self.url, reverse_lazy('rest_framework:login'))
         browser.get(url)
         print(browser.title)
         assert 'REST' in browser.title
 
     def test_api_auth_out(self):
         browser = self.browser
-        url = '{}/api-auth/logout/'.format(self.url)
+        url = '{}{}'.format(self.url, reverse_lazy('rest_framework:logout'))
         browser.get(url)
         print(browser.title)
         assert 'out' in browser.title
