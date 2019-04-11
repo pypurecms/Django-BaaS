@@ -23,7 +23,7 @@ class WebLiveTestCase(LiveServerTestCase):
         # Opening the link we want to test
         browser.get(url)
         print(browser.title)
-        assert 'Django' in browser.title
+        assert 'admin' in browser.title
 
     def test_api_auth_in(self):
         browser = self.browser
@@ -37,4 +37,4 @@ class WebLiveTestCase(LiveServerTestCase):
         url = '{}/api-auth/logout/'.format(self.url)
         browser.get(url)
         print(browser.title)
-        assert 'Log in again' in browser.page_source
+        assert 'out' in browser.title
