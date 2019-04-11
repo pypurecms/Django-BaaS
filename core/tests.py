@@ -9,6 +9,7 @@ class WebLiveTestCase(LiveServerTestCase):
     def setUp(self):
         self.browser = WebDriver()
         self.url = 'http://127.0.0.1:9696'
+        print(self.live_server_url)
         super(WebLiveTestCase, self).setUp()
 
     def tearDown(self):
@@ -17,18 +18,13 @@ class WebLiveTestCase(LiveServerTestCase):
 
     def test_admin(self):
         browser = self.browser
+        url = '{}/admin/login/?next=/admin/'.format(self.url)
+        print(url)
         # Opening the link we want to test
-        print(self.live_server_url)
-        browser.get('{}/admin'.format(self.url))
-        body = browser.find_element_by_tag_name('body')
-        assert 'Username' in body.text
+        browser.get(url)
+        browser.refresh()
+        print(browser.title)
+        assert 'Django' in browser.title
 
-    def test_index(self):
-        browser = self.browser
-        browser.get('{}/start-up'.format(self.url))
-        try:
-            body = browser.find_element_by_tag_name('body')
-            assert True
-        except Exception:
-            print('error')
+
 
