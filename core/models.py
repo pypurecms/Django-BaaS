@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class BaseModel(models.Model):
+    data = JSONField()
     created = models.DateTimeField(editable=False)
     modified = models.DateTimeField(editable=False)
 
@@ -20,30 +21,41 @@ class BaseModel(models.Model):
         abstract = True
 
 
-class Tag(BaseModel):
-    name = models.CharField(max_length=64)
-    description = models.CharField(max_length=256)
-
-
-class Category(BaseModel):
-    name = models.CharField(max_length=64)
-    description = models.CharField(max_length=256)
-
-
-class Comment(BaseModel):
-    content = models.TextField(max_length=512)
-
-
 class BaseContent(BaseModel):
     name = models.CharField(max_length=256)
-    extra = JSONField()
+    content = models.TextField()
 
     class Meta:
         abstract = True
 
 
-class Post(BaseContent):
+class Sibling(BaseModel):
     """
+    Tag, many to many Person
+    """
+    name = models.CharField(max_length=64)
+    description = models.CharField(max_length=256)
+
+
+class Parent(BaseModel):
+    """
+    Category, one to many Person
+    """
+    name = models.CharField(max_length=64)
+    description = models.CharField(max_length=256)
+
+
+class Child(BaseModel):
+    """
+    Comment, many to one Person
+    """
+    content = models.TextField(max_length=512)
+    name = models.CharField(max_length=256)
+
+
+class Father(BaseContent):
+    """
+    Post, the core model to store data.
     Content Types:
         - post
         - url
@@ -51,5 +63,11 @@ class Post(BaseContent):
         - video
         - file
     """
-    content = models.TextField()
+    pass
 
+
+class Wife(BaseContent):
+    """
+    Very similar to Father/Post, A page instead
+    """
+    pass
