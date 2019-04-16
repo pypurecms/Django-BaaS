@@ -5,7 +5,8 @@ from rest_framework.documentation import include_docs_urls
 from . import views, api
 
 router = routers.DefaultRouter()
-router.register(r'users', api.UserViewSet)
+router.register('users', api.UserViewSet),
+router.register('mans', api.ManViewSet, basename='mans')
 
 urlpatterns = [
     path('api/', include(router.urls)),
