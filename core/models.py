@@ -9,6 +9,7 @@ class BaseModel(models.Model):
     data = JSONField()
     created = models.DateTimeField(editable=False)
     modified = models.DateTimeField(editable=False)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
     def save(self, *args, **kwargs):
         ''' On save, update timestamps '''
@@ -45,15 +46,10 @@ class Parent(BaseModel):
     description = models.CharField(max_length=256)
 
 
-class Child(BaseModel):
-    """
-    Comment, many to one Person
-    """
-    content = models.TextField(max_length=512)
-    name = models.CharField(max_length=256)
 
 
-class Father(BaseContent):
+
+class Man(BaseContent):
     """
     Post, the core model to store data.
     Content Types:
@@ -63,11 +59,26 @@ class Father(BaseContent):
         - video
         - file
     """
-    pass
+    parent = models.ForeignKey(Parent, on_delete=models.SET_NULL, null=True)
+    siblings = models.ManyToManyField(Sibling)
 
+class Child(BaseModel):
+    """
+    Comment, many to one Person
+    """
+    content = models.TextField(max_length=512)
+    name = models.CharField(max_length=256)
+    man = models.ForeignKey(Man, on_delete=models.SET_NULL, null=True)
 
-class Wife(BaseContent):
+    def save(self, *args, **kwargs):
+        if not self.name:
+            self.name = "{}".format(self.user.id)
+            if self.content:
+                self.name += " - {}".format(self.content[:16])
+        super().save(*args, **kwargs)
+
+class Woman(BaseContent):
     """
     Very similar to Father/Post, A page instead
     """
-    pass
+    Man = models.ForeignKey(Man, on_delete=models.CASCADE)
