@@ -60,7 +60,7 @@ class Man(BaseContent):
         - file
     """
     parent = models.ForeignKey(Parent, on_delete=models.SET_NULL, null=True)
-    siblings = models.ManyToManyField(Sibling)
+    siblings = models.ManyToManyField(Sibling, related_name='mans')
 
 class Child(BaseModel):
     """
