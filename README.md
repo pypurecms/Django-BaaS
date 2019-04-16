@@ -13,11 +13,19 @@ It offers an easy-to-use API for front-end developer, powerful dashboard for sta
 Google Firebase is a great MBaaS, especially the real time db, it is almost changing the game, but some times, 
 Google is not trustworthy. There are 3 main differences between Django-BaaS with Google Firebase.
 
-- self hosted, data not on Google infrastructure anymore.
-- authentication and permission management is not done by Google.
-- not NoSQL with more query options.
 
 
+| Django-BaaS                                       | Firebase                                |
+| :------------------------------------------------ | :-------------------------------------- |
+| Hosted anywhere you want                          | Hosted on Google Infrastructure         |
+| RESTful API                                       | Realtime (fast)                         |
+| Built-in authentication and permission management | Integrated with firebase authentication |
+| PostgreSQL                                        | NoSQL                                   |
+
+In sum, 
+
+- Use Django-BaaS if you do not want to host data and credentials on Google's infrastructure, prefer a more flexible solution or you want to query on your data.
+- Use Firebase if you need a Realtime solution.
 
 
 ## Contribution
