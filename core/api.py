@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import viewsets
-from core.models import Man
-from core.serializer import UserSerializer, ManSerializer
+from core.models import Human
+from core.serializer import UserSerializer, HumanSerializer
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -26,5 +26,5 @@ class ManViewSet(viewsets.ModelViewSet):
     create:
     Create a new man instance.
     """
-    queryset = Man.objects.all()
-    serializer_class = ManSerializer
+    queryset = Human.objects.all()
+    serializer_class = HumanSerializer

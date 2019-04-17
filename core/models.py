@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class BaseModel(models.Model):
-    data = JSONField()
+    data = JSONField(default=dict, null=False)
     created = models.DateTimeField(editable=False)
     modified = models.DateTimeField(editable=False)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
@@ -49,7 +49,7 @@ class Parent(BaseModel):
 
 
 
-class Man(BaseContent):
+class Human(BaseContent):
     """
     Post, the core model to store data.
     Content Types:
@@ -60,7 +60,7 @@ class Man(BaseContent):
         - file
     """
     parent = models.ForeignKey(Parent, on_delete=models.SET_NULL, null=True)
-    siblings = models.ManyToManyField(Sibling, related_name='mans')
+    siblings = models.ManyToManyField(Sibling, related_name='humans')
 
 class Child(BaseModel):
     """
@@ -68,7 +68,7 @@ class Child(BaseModel):
     """
     content = models.TextField(max_length=512)
     name = models.CharField(max_length=256)
-    man = models.ForeignKey(Man, on_delete=models.SET_NULL, null=True)
+    human = models.ForeignKey(Human, on_delete=models.SET_NULL, null=True)
 
     def save(self, *args, **kwargs):
         if not self.name:
@@ -77,8 +77,8 @@ class Child(BaseModel):
                 self.name += " - {}".format(self.content[:16])
         super().save(*args, **kwargs)
 
-class Woman(BaseContent):
+class Avatar(BaseContent):
     """
     Very similar to Father/Post, A page instead
     """
-    Man = models.ForeignKey(Man, on_delete=models.CASCADE)
+    human = models.ForeignKey(Human, on_delete=models.CASCADE)
