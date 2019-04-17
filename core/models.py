@@ -32,7 +32,7 @@ class BaseContent(BaseModel):
 
 class Sibling(BaseModel):
     """
-    Tag, many to many Person
+    Tag, many to many Human
     """
     name = models.CharField(max_length=64)
     description = models.CharField(max_length=256)
@@ -40,7 +40,7 @@ class Sibling(BaseModel):
 
 class Parent(BaseModel):
     """
-    Category, one to many Person
+    Category, one to many Humna
     """
     name = models.CharField(max_length=64)
     description = models.CharField(max_length=256)
@@ -64,7 +64,7 @@ class Human(BaseContent):
 
 class Child(BaseModel):
     """
-    Comment, many to one Person
+    One human can have one or many children
     """
     content = models.TextField(max_length=512)
     name = models.CharField(max_length=256)
@@ -79,6 +79,6 @@ class Child(BaseModel):
 
 class Avatar(BaseContent):
     """
-    Very similar to Father/Post, A page instead
+    Each Avatar belongs to a human
     """
     human = models.ForeignKey(Human, on_delete=models.CASCADE)
