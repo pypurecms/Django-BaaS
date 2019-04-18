@@ -6,10 +6,10 @@ from . import views, api
 
 router = routers.DefaultRouter()
 router.register('users', api.UserViewSet),
-router.register('mans', api.ManViewSet, basename='mans')
+router.register('humans', api.ManViewSet, basename='humans')
 
 urlpatterns = [
-    path('api/', include(router.urls)),
-    path('docs/', include_docs_urls(title="doc")),
-    path('', views.index, name='index'),
+    path('', include(router.urls)),
+    path('docs', include_docs_urls(title="doc")),
+    path('ping', views.ping, name='ping'),
 ]
