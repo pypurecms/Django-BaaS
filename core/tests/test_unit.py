@@ -11,7 +11,7 @@ class DummyTestCase(TestCase):
 class MansTestCase(APITestCase):
 
     def test_man_list(self):
-        url = reverse('mans-list')
+        url = reverse('humans-list')
         response = self.client.get(url, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data.get('results', [])), 0)
