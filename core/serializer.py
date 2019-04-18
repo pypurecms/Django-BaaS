@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from core.models import Human, Child
+from .models import Human, Child, Parent, Sibling, Avatar
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -12,9 +12,24 @@ class UserSerializer(serializers.ModelSerializer):
 class HumanSerializer(serializers.ModelSerializer):
     class Meta:
         model = Human
-        fields = ('name', 'content', 'data', 'childs')
+        fields = ('id', 'user', 'name', 'content', 'data', 'childs', 'parent', 'siblings')
 
 class ChildSerializer(serializers.ModelSerializer):
     class Meta:
         model = Child
-        fields = ('name', 'content', 'human')
+        fields = ('id', 'user', 'content', 'human', 'name')
+
+class ParentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Parent
+        fields = '__all__'
+
+class SiblingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Sibling
+        fields = '__all__'
+
+class AvatarSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Avatar
+        fields = '__all__'

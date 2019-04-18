@@ -62,6 +62,9 @@ class Human(BaseContent):
     parent = models.ForeignKey(Parent, on_delete=models.SET_NULL, related_name='humans', null=True)
     siblings = models.ManyToManyField(Sibling, related_name='humans')
 
+    def __str__(self):
+        return "{0} {1}".format(self.id, self.name)
+
 class Child(BaseModel):
     """
     One human can have one or many children

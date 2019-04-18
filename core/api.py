@@ -2,8 +2,9 @@ from django.contrib.auth.models import User
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
-from core.models import Human
-from core.serializer import UserSerializer, HumanSerializer
+from .models import Human, Sibling, Child, Avatar, Parent
+from .serializer import UserSerializer, HumanSerializer, ParentSerializer, SiblingSerializer, ChildSerializer, \
+    AvatarSerializer
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -25,7 +26,7 @@ class UserViewSet(viewsets.ModelViewSet):
         return super(UserViewSet, self).get_permissions()
 
 
-class ManViewSet(viewsets.ModelViewSet):
+class HumanViewSet(viewsets.ModelViewSet):
     """
     list:
     Return a list of all man objects.
@@ -35,3 +36,21 @@ class ManViewSet(viewsets.ModelViewSet):
     """
     queryset = Human.objects.all()
     serializer_class = HumanSerializer
+
+
+class ParentViewSet(viewsets.ModelViewSet):
+    queryset = Parent.objects.all()
+    serializer_class = ParentSerializer
+
+
+class SiblingViewSet(viewsets.ModelViewSet):
+    queryset = Sibling.objects.all()
+    serializer_class = SiblingSerializer
+
+class ChildViewSet(viewsets.ModelViewSet):
+    queryset = Child.objects.all()
+    serializer_class = ChildSerializer
+
+class AvatarViewSet(viewsets.ModelViewSet):
+    queryset = Avatar.objects.all()
+    serializer_class = AvatarSerializer
