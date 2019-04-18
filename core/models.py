@@ -59,7 +59,7 @@ class Human(BaseContent):
         - video
         - file
     """
-    parent = models.ForeignKey(Parent, on_delete=models.SET_NULL, null=True)
+    parent = models.ForeignKey(Parent, on_delete=models.SET_NULL, related_name='humans', null=True)
     siblings = models.ManyToManyField(Sibling, related_name='humans')
 
 class Child(BaseModel):
@@ -68,7 +68,7 @@ class Child(BaseModel):
     """
     content = models.TextField(max_length=512)
     name = models.CharField(max_length=256)
-    human = models.ForeignKey(Human, on_delete=models.SET_NULL, null=True)
+    human = models.ForeignKey(Human, on_delete=models.SET_NULL, related_name='childs', null=True)
 
     def save(self, *args, **kwargs):
         if not self.name:
@@ -81,4 +81,4 @@ class Avatar(BaseContent):
     """
     Each Avatar belongs to a human
     """
-    human = models.ForeignKey(Human, on_delete=models.CASCADE)
+    human = models.ForeignKey(Human, on_delete=models.CASCADE, related_name='avatar')
