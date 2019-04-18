@@ -14,4 +14,4 @@ class MansTestCase(APITestCase):
         url = reverse('mans-list')
         response = self.client.get(url, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 0)
+        self.assertEqual(len(response.data.get('results', [])), 0)
