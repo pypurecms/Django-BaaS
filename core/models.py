@@ -84,4 +84,4 @@ class Avatar(BaseContent):
     """
     Each Avatar belongs to a human
     """
-    human = models.ForeignKey(Human, on_delete=models.CASCADE, related_name='avatar')
+    human = models.OneToOneField(Human, on_delete=models.CASCADE, related_name='avatar')
