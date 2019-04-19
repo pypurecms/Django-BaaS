@@ -29,6 +29,6 @@ class ModelsBaseTestCase(BaseModelTestCase):
         self.assertEqual(self.childs[2].human.name, self.human.name)
         self.assertEqual(self.human.parent.name, 'Category1')
         self.assertEqual(len(self.human.siblings.all()), 5)
-        self.assertEqual(len(self.human.avatar.all()), 1)
+        self.assertEqual(self.human.avatar, self.avatar)
         self.assertEqual(self.human.user, self.user1)
         self.assertEqual(self.childs[0].user, self.user2)
