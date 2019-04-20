@@ -1,3 +1,3 @@
 
 **Describe give summary of all commits.**
-i.e. Create a new model.
+i.e. Create a new model, Fix a spelling error ...
