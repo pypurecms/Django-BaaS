@@ -27,5 +27,3 @@ RUN apk --no-cache --virtual .build-deps add \
     )" \
     && apk add --virtual .rundeps $runDeps \
     && apk del .build-deps
-
-EXPOSE 8000
