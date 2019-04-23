@@ -5,5 +5,3 @@ setup:
 build:
   docker:
     web: Dockerfile
-run:
-  web: gunicorn Django-BaaS.wsgi

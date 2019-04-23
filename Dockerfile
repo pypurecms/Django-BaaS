@@ -27,3 +27,5 @@ RUN apk --no-cache --virtual .build-deps add \
     )" \
     && apk add --virtual .rundeps $runDeps \
     && apk del .build-deps
+
+CMD gunicorn Django-BaaS.wsgi
