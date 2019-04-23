@@ -28,4 +28,4 @@ RUN apk --no-cache --virtual .build-deps add \
     && apk add --virtual .rundeps $runDeps \
     && apk del .build-deps
 
-CMD PYTHONPATH=`pwd`/.. gunicorn Django-BaaS.wsgi
+CMD gunicorn --env DJANGOSETTINGSMODULE=Django-BaaS.settings_docker Django-BaaS.wsgi
