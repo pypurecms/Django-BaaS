@@ -2,4 +2,4 @@ build:
   docker:
     web: Dockerfile
 run:
-  web: python manage.py runserver
+  web: gunicorn Django-BaaS.wsgi

@@ -13,6 +13,7 @@ RUN apk --no-cache --virtual .build-deps add \
     ca-certificates gcc postgresql-dev linux-headers musl-dev \
     libffi-dev jpeg-dev zlib-dev \
     && pip install -r requirements.txt \
+    && pip install gunicorn \
     && find /usr/local \
         \( -type d -a -name test -o -name tests \) \
         -o \( -type f -a -name '*.pyc' -o -name '*.pyo' \) \
@@ -28,4 +29,3 @@ RUN apk --no-cache --virtual .build-deps add \
     && apk del .build-deps
 
 EXPOSE 8000
-CMD [ "python", "manage.py runserver" ]
