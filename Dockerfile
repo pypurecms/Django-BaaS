@@ -1,6 +1,6 @@
 FROM python:3.7-alpine
 ENV PYTHONUNBUFFERED 1
-ENV DJANGO_SETTINGS_MODULE=Django-BaaS.settings_docker
+ENV DJANGO_SETTINGS_MODULE=Django-BaaS.settings
 
 # Creating working directory
 RUN mkdir /usr/local/src
