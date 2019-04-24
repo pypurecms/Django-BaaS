@@ -1,6 +1,6 @@
 FROM python:3.7-alpine
 ENV PYTHONUNBUFFERED 1
-ENV DJANGO_SETTINGS_MODULE=PyPureCMS.settings
+ENV DJANGO_SETTINGS_MODULE=Django-BaaS.settings_docker
 
 # Creating working directory
 RUN mkdir /usr/local/src
@@ -27,5 +27,3 @@ RUN apk --no-cache --virtual .build-deps add \
     )" \
     && apk add --virtual .rundeps $runDeps \
     && apk del .build-deps
-
-CMD gunicorn --env DJANGO_SETTINGS_MODULE=Django-BaaS.settings_docker Django-BaaS.wsgi
