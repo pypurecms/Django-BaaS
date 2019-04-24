@@ -9,7 +9,7 @@ build:
     DJANGO_SETTINGS_MODULE: Django-BaaS.settings_docker
 release:
   command:
-    python manage.py migrate
+    - python manage.py migrate
   image: web
 run:
   web: gunicorn Django-BaaS.wsgi
