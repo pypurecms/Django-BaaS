@@ -1,3 +1,5 @@
+import os
+
 from .settings_base import *
 
 DEBUG = True
@@ -10,7 +12,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'psql',
-        'HOST': 'DATABASE',
+        'HOST': os.environ('DATABASE_URL'),
         'PORT': '5432'
     }
 }
