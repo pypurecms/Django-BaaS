@@ -62,12 +62,12 @@ jobs: # A basic unit of work in a run
   deploy:
     docker:
       - image: buildpack-deps:trusty
-      steps:
-        - checkout
-        - run:
-            name: Deploy Dev to Heroku
-            command: |
-              git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git config-cd:master
+    steps:
+      - checkout
+      - run:
+          name: Deploy Dev to Heroku
+          command: |
+            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git config-cd:master
 
 workflows:
   version: 2
