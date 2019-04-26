@@ -10,6 +10,7 @@ build:
 release:
   command:
     - python manage.py migrate
+    - python manage.py collectstatic # not required for debug mode
   image: web
 run:
-  web: gunicorn Django-BaaS.wsgi
+  web: python manage.py runserver # this is not a good idea to run this
