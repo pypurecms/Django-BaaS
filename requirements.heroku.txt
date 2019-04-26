@@ -1,2 +1,2 @@
 gunicorn==19.9.0
-dj-database-url==0.4.2
+django_heroku==0.3.1
