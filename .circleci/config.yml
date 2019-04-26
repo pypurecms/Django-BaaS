@@ -46,16 +46,35 @@ jobs: # A basic unit of work in a run
           name: Run Testing
           # pipenv run python manage.py test
           command: |
-            python manage.py test
+            coverage run --source='.' manage.py test
       - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: test-results
       - store_artifacts: # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
           path: test-results
           destination: tr1
-      - run:
-          name: Run Testing For Coverage Report
-          command: |
-            coverage run --source='.' manage.py test
+#      - run:
+#          name: Run Testing For Coverage Report
+#          command: |
+#            coverage run --source='.' manage.py test
       - run:
           command: |
             codecov
+  deploy:
+    docker:
+      - image: buildpack-deps:trusty
+    steps:
+      - checkout
+      - run:
+          name: Deploy Dev to Heroku
+          command: |
+            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git config-cd:master
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+

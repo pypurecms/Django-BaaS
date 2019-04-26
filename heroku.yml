@@ -1,0 +1,15 @@
+setup:
+  addons:
+    - plan: heroku-postgresql
+      as: DATABASE
+build:
+  docker:
+    web: Dockerfile.heroku
+  config:
+    DJANGO_SETTINGS_MODULE: Django-BaaS.settings_heroku
+release:
+  command:
+    - python manage.py migrate
+  image: web
+run:
+  web: gunicorn Django-BaaS.wsgi

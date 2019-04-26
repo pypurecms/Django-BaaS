@@ -1,0 +1,2 @@
+gunicorn==19.9.0
+django_heroku==0.3.1
