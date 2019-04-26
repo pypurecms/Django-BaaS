@@ -7,7 +7,7 @@ RUN mkdir /usr/local/src
 WORKDIR /usr/local/src
 
 # Copying requirements
-add .. .
+add . .
 
 RUN apk --no-cache --virtual .build-deps add \
     ca-certificates gcc postgresql-dev linux-headers musl-dev \

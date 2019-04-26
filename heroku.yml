@@ -4,7 +4,7 @@ setup:
       as: DATABASE
 build:
   docker:
-    web: heroku/Dockerfile
+    web: Dockerfile
   config:
     DJANGO_SETTINGS_MODULE: Django-BaaS.settings_heroku
 release:
