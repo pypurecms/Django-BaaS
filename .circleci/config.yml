@@ -65,9 +65,9 @@ jobs: # A basic unit of work in a run
     steps:
       - checkout
       - run:
-          name: Deploy Dev to Heroku
+          name: Deploy Current Build to Heroku
           command: |
-            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git config-cd:master
+            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git HEAD:master
 
 workflows:
   version: 2
