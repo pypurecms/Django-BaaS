@@ -1,1 +1,0 @@
-# Doc of PyPure CMS

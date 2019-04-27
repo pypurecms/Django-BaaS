@@ -40,3 +40,9 @@ class WebLiveTestCase(LiveServerTestCase):
         browser.get(url)
         print(browser.title)
         assert 'out' in browser.title
+
+    def test_ping(self):
+        browser = self.browser
+        url = '{}{}'.format(self.url, reverse_lazy('ping'))
+        browser.get(url)
+        print(browser)

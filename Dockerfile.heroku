@@ -1,6 +1,6 @@
 FROM python:3.7-alpine
 ENV PYTHONUNBUFFERED 1
-ENV DJANGO_SETTINGS_MODULE=PyPureCMS.settings
+ENV DJANGO_SETTINGS_MODULE=Django-BaaS.settings_heroku
 
 # Creating working directory
 RUN mkdir /usr/local/src
@@ -10,9 +10,10 @@ WORKDIR /usr/local/src
 add . .
 
 RUN apk --no-cache --virtual .build-deps add \
-    ca-certificates gcc postgresql-dev linux-headers musl-dev \
+    ca-certificates gcc postgresql-dev linux-headers musl-dev curl \
     libffi-dev jpeg-dev zlib-dev \
     && pip install -r requirements.txt \
+    && pip install -r requirements.heroku.txt \
     && find /usr/local \
         \( -type d -a -name test -o -name tests \) \
         -o \( -type f -a -name '*.pyc' -o -name '*.pyo' \) \
@@ -26,6 +27,4 @@ RUN apk --no-cache --virtual .build-deps add \
     )" \
     && apk add --virtual .rundeps $runDeps \
     && apk del .build-deps
-
-EXPOSE 8000
-CMD [ "python", "manage.py runserver" ]
+# curl is used in django-heroku
