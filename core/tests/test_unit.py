@@ -3,10 +3,11 @@ from django.test import TestCase
 from rest_framework import status
 from rest_framework.test import APITestCase
 
+
 class DummyTestCase(TestCase):
 
     def test_math(self):
-        self.assertEqual(1+1, 2)
+        self.assertEqual(1 + 1, 2)
 
 
 class BaseEndpointTestCase(APITestCase):
@@ -25,8 +26,7 @@ class HumansTestCase(BaseEndpointTestCase):
 
     def setUp(self):
         self.the_setup('humans-list')
-        super(HumansTestCase,self).setUp()
+        super(HumansTestCase, self).setUp()
 
     def test_list_case(self):
         self.list_case()
-

@@ -46,9 +46,6 @@ class Parent(BaseModel):
     description = models.CharField(max_length=256)
 
 
-
-
-
 class Human(BaseContent):
     """
     Post, the core model to store data.
@@ -65,6 +62,7 @@ class Human(BaseContent):
     def __str__(self):
         return "{0} {1}".format(self.id, self.name)
 
+
 class Child(BaseModel):
     """
     One human can have one or many children
@@ -79,6 +77,7 @@ class Child(BaseModel):
             if self.content:
                 self.name += " - {}".format(self.content[:16])
         super().save(*args, **kwargs)
+
 
 class Avatar(BaseContent):
     """

@@ -6,6 +6,7 @@ from .models import Human, Sibling, Child, Avatar, Parent
 from .serializer import UserSerializer, HumanSerializer, ParentSerializer, SiblingSerializer, ChildSerializer, \
     AvatarSerializer
 
+
 class UserViewSet(viewsets.ModelViewSet):
     """
     retrieve:
@@ -47,9 +48,11 @@ class SiblingViewSet(viewsets.ModelViewSet):
     queryset = Sibling.objects.all()
     serializer_class = SiblingSerializer
 
+
 class ChildViewSet(viewsets.ModelViewSet):
     queryset = Child.objects.all()
     serializer_class = ChildSerializer
+
 
 class AvatarViewSet(viewsets.ModelViewSet):
     queryset = Avatar.objects.all()

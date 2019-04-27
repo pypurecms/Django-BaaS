@@ -14,20 +14,24 @@ class HumanSerializer(serializers.ModelSerializer):
         model = Human
         fields = ('id', 'user', 'name', 'content', 'data', 'childs', 'parent', 'siblings')
 
+
 class ChildSerializer(serializers.ModelSerializer):
     class Meta:
         model = Child
         fields = ('id', 'user', 'content', 'human', 'name')
+
 
 class ParentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Parent
         fields = '__all__'
 
+
 class SiblingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sibling
         fields = '__all__'
+
 
 class AvatarSerializer(serializers.ModelSerializer):
     class Meta:
