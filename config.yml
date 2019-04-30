@@ -1,0 +1,6 @@
+models:
+  Sibling: Tag
+  Parent: Category
+  Human: Post
+  Child: Comment
+  Avatar: Page
