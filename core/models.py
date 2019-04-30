@@ -2,7 +2,7 @@ from django.utils import timezone
 from django.db import models
 from django.contrib.postgres.fields import JSONField
 from django.contrib.auth.models import User
-from django.conf import settings
+from .utils import get_model_name, get_plural_name
 
 
 # Create your models here.
@@ -39,7 +39,8 @@ class Sibling(BaseModel):
     description = models.CharField(max_length=256)
 
     class Meta:
-        verbose_name = settings.MODEL_DICT.get('sibling').capitalize()
+        verbose_name = get_model_name('sibling')
+        verbose_name_plural = get_plural_name('sibling')
 
 
 class Parent(BaseModel):
@@ -50,7 +51,8 @@ class Parent(BaseModel):
     description = models.CharField(max_length=256)
 
     class Meta:
-        verbose_name = settings.MODEL_DICT.get('parent').capitalize()
+        verbose_name = get_model_name('parent')
+        verbose_name_plural = get_plural_name('parent')
 
 
 class Human(BaseContent):
@@ -71,7 +73,8 @@ class Human(BaseContent):
 
 
     class Meta:
-        verbose_name = settings.MODEL_DICT.get('human').capitalize()
+        verbose_name = get_model_name('human')
+        verbose_name_plural = get_plural_name('human')
 
 
 class Child(BaseModel):
@@ -91,7 +94,8 @@ class Child(BaseModel):
 
 
     class Meta:
-        verbose_name = settings.MODEL_DICT.get('child').capitalize()
+        verbose_name = get_model_name('child')
+        verbose_name_plural = get_plural_name('child')
 
 
 class Avatar(BaseContent):
@@ -103,4 +107,5 @@ class Avatar(BaseContent):
 
 
     class Meta:
-        verbose_name = settings.MODEL_DICT.get('avatar').capitalize()
+        verbose_name = get_model_name('avatar')
+        verbose_name_plural = get_plural_name('avatar')
