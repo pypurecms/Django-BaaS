@@ -9,6 +9,7 @@ build:
     DJANGO_SETTINGS_MODULE: Django-BaaS.settings_heroku
 release:
   command:
+    - python manage.py makemigrations
     - python manage.py migrate
   image: web
 run:
