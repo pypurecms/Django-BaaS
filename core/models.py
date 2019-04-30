@@ -2,6 +2,7 @@ from django.utils import timezone
 from django.db import models
 from django.contrib.postgres.fields import JSONField
 from django.contrib.auth.models import User
+from django.conf import settings
 
 
 # Create your models here.
@@ -37,6 +38,9 @@ class Sibling(BaseModel):
     name = models.CharField(max_length=64)
     description = models.CharField(max_length=256)
 
+    class Meta:
+        verbose_name = settings.MODEL_DICT.get('sibling').capitalize()
+
 
 class Parent(BaseModel):
     """
@@ -45,8 +49,8 @@ class Parent(BaseModel):
     name = models.CharField(max_length=64)
     description = models.CharField(max_length=256)
 
-
-
+    class Meta:
+        verbose_name = settings.MODEL_DICT.get('parent').capitalize()
 
 
 class Human(BaseContent):
@@ -65,6 +69,11 @@ class Human(BaseContent):
     def __str__(self):
         return "{0} {1}".format(self.id, self.name)
 
+
+    class Meta:
+        verbose_name = settings.MODEL_DICT.get('human').capitalize()
+
+
 class Child(BaseModel):
     """
     One human can have one or many children
@@ -80,9 +89,18 @@ class Child(BaseModel):
                 self.name += " - {}".format(self.content[:16])
         super().save(*args, **kwargs)
 
+
+    class Meta:
+        verbose_name = settings.MODEL_DICT.get('child').capitalize()
+
+
 class Avatar(BaseContent):
     parent = models.ForeignKey(Parent, on_delete=models.SET_NULL, related_name='avatars', null=True)
     siblings = models.ManyToManyField(Sibling, related_name='avatars')
 
     def __str__(self):
         return "{0} {1}".format(self.id, self.name)
+
+
+    class Meta:
+        verbose_name = settings.MODEL_DICT.get('avatar').capitalize()

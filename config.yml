@@ -1,6 +1,11 @@
 models:
-  Sibling: Tag
-  Parent: Category
-  Human: Post
-  Child: Comment
-  Avatar: Page
+  sibling: tag
+  siblings: tags
+  parent: category
+  parents: categories
+  human: post
+  humans: posts
+  child: comment
+  childs: comments
+  avatar: page
+  avatars: pages
