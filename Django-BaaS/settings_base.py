@@ -17,6 +17,7 @@ import ruamel.yaml as yaml
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 MODEL_DICT = yaml.safe_load(open('{}/config.yml'.format(BASE_DIR))).get('models')
+APP_DICT = yaml.safe_load(open('{}/config.yml'.format(BASE_DIR))).get('app')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
