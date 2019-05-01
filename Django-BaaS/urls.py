@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
 from rest_framework.urls import url
 
-admin.site.site_header = 'Demo Admin'
+admin.site.site_header = 'Admin - {}'.format(settings.APP_DICT.get('name'))
+
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),

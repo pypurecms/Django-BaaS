@@ -1,5 +1,6 @@
 from django.test import LiveServerTestCase
 from django.urls import reverse_lazy, reverse
+from django.conf import settings
 # from rest_framework.reverse import reverse, reverse_lazy
 from selenium.webdriver.firefox.webdriver import WebDriver
 from selenium.webdriver.common.keys import Keys
@@ -24,7 +25,7 @@ class WebLiveTestCase(LiveServerTestCase):
         # Opening the link we want to test
         browser.get(url)
         print(browser.title)
-        assert 'admin' in browser.title
+        assert 'dmin' in browser.title
 
     def test_api_auth_in(self):
         browser = self.browser
@@ -32,7 +33,7 @@ class WebLiveTestCase(LiveServerTestCase):
         url = '{}{}'.format(self.url, reverse_lazy('rest_framework:login'))
         browser.get(url)
         print(browser.title)
-        assert 'REST' in browser.title
+        assert settings.APP_DICT.get('name') in browser.title
 
     def test_api_auth_out(self):
         browser = self.browser
