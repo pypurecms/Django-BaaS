@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.urls import url
 
+admin.site.site_header = 'Demo Admin'
+
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
     path('api-auth/', include('rest_framework.urls')), # name not required, rest_framework:login/out
