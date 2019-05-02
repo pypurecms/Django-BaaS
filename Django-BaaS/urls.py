@@ -22,7 +22,7 @@ admin.site.site_header = 'Admin - {}'.format(settings.APP_DICT.get('name'))
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls, name='admin'),
+    path('models/', admin.site.urls, name='admin'),
     path('api-auth/', include('rest_framework.urls')), # name not required, rest_framework:login/out
     path('', include('core.urls')),
 ]
