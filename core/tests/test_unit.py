@@ -30,3 +30,14 @@ class HumansTestCase(BaseEndpointTestCase):
 
     def test_list_case(self):
         self.list_case()
+
+
+class UsersTestCase(BaseEndpointTestCase):
+    def setUp(self):
+        self.the_setup('users-list')
+        super(UsersTestCase, self).setUp()
+
+    def test_list_case(self):
+        url = reverse(self.url_name)
+        response = self.client.get(url, format='json')
+        self.assertNotEqual(response.status_code, status.HTTP_200_OK)

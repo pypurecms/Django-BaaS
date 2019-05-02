@@ -6,7 +6,7 @@ from . import views, api
 from .utils import get_url_name, get_enabled
 
 router = routers.DefaultRouter()
-router.register('users', api.UserViewSet),
+router.register('users', api.UserViewSet, basename='users'),
 if get_enabled('human'): router.register(get_url_name('human'), api.HumanViewSet, basename='humans')
 if get_enabled('child'): router.register(get_url_name('child'), api.ChildViewSet, basename='children')
 if get_enabled('parent'): router.register(get_url_name('parent'), api.ParentViewSet, basename='parents')

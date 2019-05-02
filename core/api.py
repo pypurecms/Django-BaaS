@@ -24,7 +24,6 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 
-
 class HumanViewSet(viewsets.ModelViewSet):
     queryset = Human.objects.all()
     serializer_class = HumanSerializer
