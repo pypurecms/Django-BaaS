@@ -4,6 +4,9 @@
 1. `settings_local.py.example` => `settings_local.py`
 
 
+## Config and Migration
+Migrations require updating after edit `config.yml` file.
+
 ## Ask For help
 Contributings are always welcome, 
 if you met any issues which require any help, 

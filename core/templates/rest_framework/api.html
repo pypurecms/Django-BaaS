@@ -1,0 +1,18 @@
+{% extends "rest_framework/base.html" %}
+{% load i18n %}
+{% load core_extra %}
+
+{% block bootstrap_theme %}
+    <link rel="stylesheet" href="https://bootswatch.com/3/cerulean/bootstrap.min.css" type="text/css">
+{% endblock %}
+
+{% block title %}
+API Root - {% settings_value "name" %}
+{% endblock %}
+
+
+{% block branding %}
+    <a class="navbar-brand" rel="nofollow" href="/">
+        {% trans 'Demo' %}
+    </a>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "rest_framework/login_base.html" %}
+{% load core_extra %}
+{% block bootstrap_theme %}
+    <link rel="stylesheet" href="https://bootswatch.com/3/cerulean/bootstrap.min.css" type="text/css">
+{% endblock %}
+{% block title %}
+Login - {% settings_value "name" %}
+{% endblock %}
+{% block branding %}
+    <h3 style="margin: 0 0 20px;">Login</h3>
+{% endblock %}

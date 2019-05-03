@@ -14,7 +14,7 @@ class BaseModelTestCase(TestCase):
 
         ## make 5 siblings for the human
         mommy.make(Sibling, _quantity=5, humans=[self.human.id])
-        self.avatar = mommy.make(Avatar, name='page', human=self.human)
+        self.avatar = mommy.make(Avatar, name='page', parent=self.parent)
 
     def tearDown(self):
         pass
@@ -29,6 +29,6 @@ class ModelsBaseTestCase(BaseModelTestCase):
         self.assertEqual(self.childs[2].human.name, self.human.name)
         self.assertEqual(self.human.parent.name, 'Category1')
         self.assertEqual(len(self.human.siblings.all()), 5)
-        self.assertEqual(self.human.avatar, self.avatar)
+        self.assertEqual(len(self.parent.avatars.all()), 1)
         self.assertEqual(self.human.user, self.user1)
         self.assertEqual(self.childs[0].user, self.user2)

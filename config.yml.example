@@ -1,0 +1,24 @@
+# this is a question answer config sample
+models:
+  sibling:
+    name: tagsss
+    plural: tags
+    enable: true
+  parent:
+    name: category
+    plural: categories
+    enable: true
+  human:
+    name: question
+    plural: questions
+    enable: true
+  child:
+    name: answer
+    plural: answers
+    enable: true
+  avatar:
+    enable: false
+app:
+  name: Demo
+permissions:
+
