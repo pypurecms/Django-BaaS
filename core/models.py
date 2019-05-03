@@ -66,7 +66,7 @@ class Human(BaseContent):
         - file
     """
     parent = models.ForeignKey(Parent, on_delete=models.SET_NULL, related_name='humans', null=True)
-    siblings = models.ManyToManyField(Sibling, related_name='humans')
+    siblings = models.ManyToManyField(Sibling, related_name='humans', blank=True)
 
     def __str__(self):
         return "{0} {1}".format(self.id, self.name)
@@ -100,7 +100,7 @@ class Child(BaseModel):
 
 class Avatar(BaseContent):
     parent = models.ForeignKey(Parent, on_delete=models.SET_NULL, related_name='avatars', null=True)
-    siblings = models.ManyToManyField(Sibling, related_name='avatars')
+    siblings = models.ManyToManyField(Sibling, related_name='avatars', blank=True)
 
     def __str__(self):
         return "{0} {1}".format(self.id, self.name)
