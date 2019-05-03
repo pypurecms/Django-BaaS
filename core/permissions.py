@@ -15,3 +15,21 @@ class IsOwner(BasePermission):
         elif obj.user == request.user:
             return True
         return False
+
+
+class IsOwnerOrAdmin(IsOwner):
+    """
+    Allows access only to authenticated users and admin.
+    """
+
+    def has_object_permission(self, request, view, obj):
+        return bool(request.user and request.user.is_staff) or super(IsOwnerOrAdmin, self).has_object_permission()
+
+
+class IsOwnerOrSU(IsOwner):
+    """
+    Allows access only to authenticated users and Super User.
+    """
+
+    def has_object_permission(self, request, view, obj):
+        return bool(request.user and request.user.is_superuser) or super(IsOwnerOrAdmin, self).has_object_permission()
