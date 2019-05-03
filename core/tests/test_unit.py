@@ -34,7 +34,7 @@ class HumansTestCase(BaseEndpointTestCase):
 
 class UsersTestCase(BaseEndpointTestCase):
     def setUp(self):
-        self.the_setup('users-list')
+        self.the_setup('user-list')
         super(UsersTestCase, self).setUp()
 
     def test_list_case(self):
