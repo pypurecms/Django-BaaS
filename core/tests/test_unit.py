@@ -37,7 +37,7 @@ class UsersTestCase(BaseEndpointTestCase):
         self.the_setup('user-list')
         super(UsersTestCase, self).setUp()
 
-    def test_list_case(self):
+    def test_without_auth(self):
         url = reverse(self.url_name)
         response = self.client.get(url, format='json')
-        self.assertNotEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
