@@ -7,10 +7,10 @@ build:
     web: Dockerfile.heroku
   config:
     DJANGO_SETTINGS_MODULE: Django-BaaS.settings_heroku
-release:
-  command:
-    - python manage.py migrate
-    - python manage.py create_staff_on_heroku
-  image: web
+#release:
+#  command:
+#    - python manage.py migrate
+#    - python manage.py create_staff_on_heroku
+#  image: web
 run:
   web: gunicorn Django-BaaS.wsgi
