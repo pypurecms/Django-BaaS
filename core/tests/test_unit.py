@@ -82,10 +82,10 @@ class ChildTestCase(HumanTestCase):
         self.the_setup('children', obj=Child)
 
 
-class SiblingTestCase(HumanTestCase):
+class AvatarTestCase(HumanTestCase):
     def setUp(self):
-        self.endpoint_enabled = get_enabled('sibling')
-        self.the_setup('siblings', obj=Sibling)
+        self.endpoint_enabled = get_enabled('avatar')
+        self.the_setup('avatars', obj=Avatar)
 
 
 class ParentTestCase(HumanTestCase):
@@ -93,8 +93,18 @@ class ParentTestCase(HumanTestCase):
         self.endpoint_enabled = get_enabled('parent')
         self.the_setup('parents', obj=Parent)
 
+    def test_list_with_user_auth(self):
+        if self.endpoint_enabled:
+            url = reverse('{}-list'.format(self.base_name))
+            self.user1.is_staff = False
+            self.user1.save()
+            self.client.login(username=self.user1.username, password=self.password)
+            response = self.client.get(url, format='json')
+            self.assertEqual(response.status_code, status.HTTP_200_OK)
+            self.client.logout()
 
-class AvatarTestCase(HumanTestCase):
+
+class SiblingTestCase(ParentTestCase):
     def setUp(self):
-        self.endpoint_enabled = get_enabled('avatar')
-        self.the_setup('avatars', obj=Avatar)
+        self.endpoint_enabled = get_enabled('sibling')
+        self.the_setup('siblings', obj=Sibling)
