@@ -11,5 +11,5 @@ class Command(BaseCommand):
         email = os.environ['email']
         password = os.environ['password']
         is_staff = True
-        if not User.objects.all().filter(username=username).count() < 1:
+        if User.objects.all().filter(username=username).count() < 1:
             User.objects.create_user(email=email, password=password, username=username, is_staff=is_staff)
