@@ -26,7 +26,5 @@ RUN apk --no-cache --virtual .build-deps add \
                 | sort -u \
     )" \
     && apk add --virtual .rundeps $runDeps \
-    && apk del .build-deps \
-    && python manage.py migrate \
-    && python manage.py create_staff_on_heroku
+    && apk del .build-deps
 # curl is used in django-heroku
