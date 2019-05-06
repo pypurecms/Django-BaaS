@@ -24,8 +24,7 @@ class UserViewSet(viewsets.ModelViewSet):
         return super(UserViewSet, self).get_permissions()
 
 
-
-class TheModelViewSet(viewsets.ModelViewSet):
+class ContentViewSet(viewsets.ModelViewSet):
     def get_permissions(self):
         if self.action in ['list']:
             return [IsAdminUser()]
@@ -33,36 +32,43 @@ class TheModelViewSet(viewsets.ModelViewSet):
             return [IsAuthenticated()]
         elif self.action in ['update', 'partial_update', 'delete']:
             return [IsAuthenticated(), IsOwnerOrAdmin()]
-        return super(TheModelViewSet, self).get_permissions()
-
+        return super(ContentViewSet, self).get_permissions()
 
     @action(detail=False, methods=['GET'])
     def list_mine(self, request, *args, **kwargs):
         self.queryset = self.queryset.filter(user=self.request.user)
-        return super(TheModelViewSet, self).list(request, args, kwargs)
+        return super(ContentViewSet, self).list(request, args, kwargs)
 
-class HumanViewSet(TheModelViewSet):
+
+class HumanViewSet(ContentViewSet):
     queryset = Human.objects.all()
     serializer_class = HumanSerializer
 
 
-
-class ParentViewSet(TheModelViewSet):
-    queryset = Parent.objects.all()
-    serializer_class = ParentSerializer
-
-
-
-class SiblingViewSet(TheModelViewSet):
-    queryset = Sibling.objects.all()
-    serializer_class = SiblingSerializer
-
-
-class ChildViewSet(TheModelViewSet):
+class ChildViewSet(ContentViewSet):
     queryset = Child.objects.all()
     serializer_class = ChildSerializer
 
 
-class AvatarViewSet(TheModelViewSet):
+class AvatarViewSet(ContentViewSet):
     queryset = Avatar.objects.all()
     serializer_class = AvatarSerializer
+
+
+class ParentContentViewSet(ContentViewSet):
+    def get_permissions(self):
+        if self.action in ['list', 'list_mine', 'create']:
+            return [IsAuthenticated()]
+        elif self.action in ['update', 'partial_update', 'delete']:
+            return [IsAuthenticated(), IsOwnerOrAdmin()]
+        return super(ParentContentViewSet, self).get_permissions()
+
+
+class ParentViewSet(ParentContentViewSet):
+    queryset = Parent.objects.all()
+    serializer_class = ParentSerializer
+
+
+class SiblingViewSet(ParentContentViewSet):
+    queryset = Sibling.objects.all()
+    serializer_class = SiblingSerializer
