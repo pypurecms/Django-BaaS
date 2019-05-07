@@ -30,6 +30,9 @@ class BaseContent(BaseModel):
     class Meta:
         abstract = True
 
+    def __str__(self):
+        return "{0} {1}".format(self.id, self.name)
+
 
 class Sibling(BaseModel):
     """
@@ -42,6 +45,9 @@ class Sibling(BaseModel):
         verbose_name = get_model_name('sibling')
         verbose_name_plural = get_plural_name('sibling')
 
+    def __str__(self):
+        return "{0} {1}".format(self.id, self.name)
+
 
 class Parent(BaseModel):
     """
@@ -53,6 +59,9 @@ class Parent(BaseModel):
     class Meta:
         verbose_name = get_model_name('parent')
         verbose_name_plural = get_plural_name('parent')
+
+    def __str__(self):
+        return "{0} {1}".format(self.id, self.name)
 
 
 class Human(BaseContent):
@@ -71,7 +80,6 @@ class Human(BaseContent):
     def __str__(self):
         return "{0} {1}".format(self.id, self.name)
 
-
     class Meta:
         verbose_name = get_model_name('human')
         verbose_name_plural = get_plural_name('human')
@@ -85,13 +93,15 @@ class Child(BaseModel):
     name = models.CharField(max_length=256)
     human = models.ForeignKey(Human, on_delete=models.SET_NULL, related_name='childs', null=True)
 
+    def __str__(self):
+        return "{0} {1}".format(self.id, self.name)
+
     def save(self, *args, **kwargs):
         if not self.name:
             self.name = "{}".format(self.user.id)
             if self.content:
                 self.name += " - {}".format(self.content[:16])
         super().save(*args, **kwargs)
-
 
     class Meta:
         verbose_name = get_model_name('child')
@@ -104,7 +114,6 @@ class Avatar(BaseContent):
 
     def __str__(self):
         return "{0} {1}".format(self.id, self.name)
-
 
     class Meta:
         verbose_name = get_model_name('avatar')

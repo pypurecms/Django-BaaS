@@ -5,4 +5,5 @@ djangorestframework==3.9.2
 coreapi==2.3.3
 markdown==3.1
 ruamel.yaml==0.15.94
+faker==1.0.5
 model_mommy==1.6.0
