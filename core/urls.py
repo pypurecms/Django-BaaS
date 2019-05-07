@@ -15,6 +15,20 @@ if get_enabled('avatar'): router.register(get_url_name('avatar'), api.AvatarView
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('docs', include_docs_urls(title="API Docs")),
+    path('docs', include_docs_urls(title="API Docs",
+                                   public=True,
+                                   description='''
+This is a documentation for the demo which implement Django-BaaS as a question-answer based CMS.
+
+## About Permissions of Objects
+- The present docs are public.
+- Interacting with different API endpoints requires different permissions, for example, 
+    - `authenticated` is required to create the question/human object, but it is not to create the user.
+    - only admin can view all users profile.
+- This permission management can be easily configured in the `config.yml`.
+
+                                   '''
+                                   )
+         ),
     path('ping', views.ping, name='ping'),
 ]
