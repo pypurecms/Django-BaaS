@@ -11,6 +11,18 @@ from .permissions import IsOwner, IsOwnerOrAdmin
 
 
 class UserViewSet(viewsets.ModelViewSet):
+    """
+    retrieve:
+    Return the given user.
+
+    list:
+    Return a list of all the existing users.
+
+    create:
+    Create a new user instance.
+    """
+
+
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
@@ -36,6 +48,11 @@ class ContentViewSet(viewsets.ModelViewSet):
 
     @action(detail=False, methods=['GET'])
     def list_mine(self, request, *args, **kwargs):
+        def some_action(self, request, *args, **kwargs):
+            """
+            get:
+            To list all objects belonging to the user.
+            """
         self.queryset = self.queryset.filter(user=self.request.user)
         return super(ContentViewSet, self).list(request, args, kwargs)
 
