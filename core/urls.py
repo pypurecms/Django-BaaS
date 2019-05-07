@@ -27,6 +27,10 @@ This is a documentation for the demo which implement Django-BaaS as a question-a
     - only admin can view all users profile.
 - This permission management can be easily configured in the `config.yml`.
 
+## About Django-BaaS
+This demo project is based on [Django-BaaS](https://github.com/pypurecms/Django-BaaS) 
+which is an open source, self-hosted and developer friendly BaaS.
+
                                    '''
                                    )
          ),
