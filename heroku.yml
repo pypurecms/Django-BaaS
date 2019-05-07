@@ -9,4 +9,4 @@ build:
   config:
     DJANGO_SETTINGS_MODULE: Django-BaaS.settings_heroku
 run:
-  web: python manage.py create_staff_on_heroku && gunicorn Django-BaaS.wsgi
+  web: python manage.py create_staff_on_heroku && python manage.py create_dummy_data && gunicorn Django-BaaS.wsgi
