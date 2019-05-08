@@ -1,3 +1,4 @@
+# https://devcenter.heroku.com/articles/build-docker-images-heroku-yml
 setup:
   addons:
     - plan: heroku-postgresql
@@ -7,9 +8,5 @@ build:
     web: Dockerfile.heroku
   config:
     DJANGO_SETTINGS_MODULE: Django-BaaS.settings_heroku
-release:
-  command:
-    - python manage.py migrate
-  image: web
 run:
-  web: gunicorn Django-BaaS.wsgi
+  web: python manage.py create_staff_on_heroku && python manage.py create_dummy_data && gunicorn Django-BaaS.wsgi
