@@ -4,7 +4,8 @@
 
 [![Heroku CD](https://img.shields.io/static/v1.svg?label=Build&message=Django-BaaS&color=success)](https://django-baas.herokuapp.com)
 [![CircleCI](https://circleci.com/gh/pypurecms/Django-BaaS.svg?style=svg)](https://circleci.com/gh/pypurecms/Django-BaaS)
-[![codefactor](https://www.codefactor.io/repository/github/pypurecms/Django-BaaS/badge?style=flat-square)](https://www.codefactor.io/repository/github/pypurecms/Django-BaaS/) 
+[![codefactor](https://www.codefactor.io/repository/github/pypurecms/Django-BaaS/badge?style=flat-square)](https://www.codefactor.io/repository/github/pypurecms/Django-BaaS/) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fpypurecms%2FDjango-BaaS.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fpypurecms%2FDjango-BaaS?ref=badge_shield)
+
 [![Maintainability](https://api.codeclimate.com/v1/badges/4faa043f47290667b98f/maintainability)](https://codeclimate.com/github/pypurecms/Django-BaaS/maintainability)
 [![codecov](https://codecov.io/gh/pypurecms/Django-BaaS/branch/master/graph/badge.svg)](https://codecov.io/gh/pypurecms/Django-BaaS)
 
@@ -43,3 +44,7 @@ In sum,
 
 ## Internationalization
 - [中文](README-zh.md)
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fpypurecms%2FDjango-BaaS.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fpypurecms%2FDjango-BaaS?ref=badge_large)
