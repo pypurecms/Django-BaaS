@@ -1,23 +1,53 @@
-# this is a question answer config sample
+# this is a blog post comment config sample
 models:
   sibling:
-    name: tagsss
+    name: tag
     plural: tags
     enable: true
+    permissions:
+      create: auth
+      read: any
+      update: staff
+      delete: staff
+      list: any
+      list_mine: auth
   parent:
     name: category
     plural: categories
     enable: true
+    permissions:
+      create: auth
+      read: any
+      update: staff
+      delete: staff
+      list: any
+      list_mine: auth
   human:
-    name: question
-    plural: questions
+    name: post
+    plural: posts
     enable: true
+    permissions:
+      create: auth
+      read: any
+      update: owner
+      delete: owner
+      list: any
+      list_mine: auth
   child:
-    name: answer
-    plural: answers
+    name: comment
+    plural: comments
     enable: true
+    permissions:
+      create: auth
+      read: any
+      update: owner
+      delete: owner
+      list: any
+      list_mine: auth
   avatar:
     enable: false
+    name: avatar
+    plural: avatars
 app:
   name: Demo
 permissions:

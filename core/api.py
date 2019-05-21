@@ -8,6 +8,7 @@ from .models import Human, Sibling, Child, Avatar, Parent
 from .serializer import UserSerializer, HumanSerializer, ParentSerializer, SiblingSerializer, ChildSerializer, \
     AvatarSerializer
 from .permissions import IsOwner, IsOwnerOrAdmin
+from .utils import get_permission
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -66,12 +67,10 @@ class ContentViewSet(viewsets.ModelViewSet):
         Delete the given object.
     """
     def get_permissions(self):
-        if self.action in ['list']:
-            return [IsAdminUser()]
-        elif self.action in ['list_mine', 'create']:
+        if self.action in ['list_mine', 'create']:
             return [IsAuthenticated()]
         elif self.action in ['update', 'partial_update', 'delete']:
-            return [IsAuthenticated(), IsOwnerOrAdmin()]
+            return [IsOwnerOrAdmin()]
         return super(ContentViewSet, self).get_permissions()
 
     @action(detail=False, methods=['GET'])
@@ -85,6 +84,22 @@ class ContentViewSet(viewsets.ModelViewSet):
 
 
 class HumanViewSet(ContentViewSet):
+
+    def get_permissions(self):
+        if self.action in ['list'] and get_permission('human', 'list'):
+            return [get_permission('human', 'list')]
+        elif self.action in ['list_mine'] and get_permission('human', 'list_mine'):
+            return [get_permission('human', 'list_mine')]
+        elif self.action in ['read'] and get_permission('human', 'read'):
+            return [get_permission('human', 'read')]
+        elif self.action in ['update', 'partial_update'] and get_permission('human', 'update'):
+            return [get_permission('human', 'update')]
+        elif self.action in ['delete'] and get_permission('human', 'delete'):
+            return [get_permission('human', 'delete')]
+        elif self.action in ['create'] and get_permission('human', 'create'):
+            return [get_permission('human', 'create')]
+        return super(HumanViewSet, self).get_permissions()
+
     queryset = Human.objects.all()
     serializer_class = HumanSerializer
 
