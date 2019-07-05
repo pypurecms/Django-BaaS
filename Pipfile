@@ -9,7 +9,7 @@ verify_ssl = true
 sqlparse = "==0.2.4"
 djangorestframework = "==3.9.2"
 psycopg2-binary = "==2.8.1"
-Django = "==2.2"
+Django = ">=2.2.3"
 
 [requires]
 python_version = "3.7"
